@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'smmm-user-selection',
@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-selection.component.scss']
 })
 export class UserSelectionComponent implements OnInit {
-
+  apikey: number = 0;
   constructor() { }
 
   ngOnInit() {
   }
-
+  
 }

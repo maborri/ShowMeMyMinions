@@ -1,6 +1,16 @@
 <div class="container">
   <div>
-    <label for="summonerInput">Your summoner name here:</label>
+      <p><strong>Temporal input to avoid apikey abuse</strong></p>
+      <label for="apikey">apikey:</label>
+      <input id="apikey" type="text" [(ngModel)]="apikey"/>
+      <p>Using APIKEY: {{apikey}}</p>
+      <hr/>
+  </div>
+</div>
+
+<div class="container">
+  <div>
+    <label for="summonerInput">Put your summoner name here:</label>
     <input id="summonerInput" type="text">
   </div>
   <div>
