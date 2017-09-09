@@ -7,6 +7,7 @@ import { UserSelectionComponent } from './user-selection/user-selection.componen
 
 import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { GetUserIdService } from './get-user-id.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [GetUserIdService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

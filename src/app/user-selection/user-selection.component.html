@@ -11,15 +11,23 @@
 <div class="container">
   <div>
     <label for="summonerInput">Put your summoner name here:</label>
-    <input id="summonerInput" type="text">
+    <input id="summonerInput" type="text" [(ngModel)]="summonerName">
   </div>
   <div>
     <label for="serverSelect">Pick your server:</label>
-    <select id="serverSelect">
+    <select id="serverSelect" [(ngModel)]="region">
+      <option value="BR">BR</option>
+      <option value="EUNE">EUNE</option>
+      <option value="EUW">EUW</option>
+      <option value="JP">JP</option>
+      <option value="KR">KR</option>
       <option value="LAN">LAN</option>
       <option value="LAS">LAS</option>
       <option value="NA">NA</option>
-      <option value="EU">EU</option>
+      <option value="OCE">OCE</option>
+      <option value="RU">RU</option>
+      <option value="TR">TR</option>
     </select>
   </div>
+  <button (click)="getMatchList()" >Go!</button>
 </div>
