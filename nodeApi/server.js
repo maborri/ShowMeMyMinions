@@ -4,7 +4,7 @@ var cors = require('cors');
 
 var app = express();
 app.use(cors());
-const apiKey = "RGAPI-68347fcc-520c-40d4-a67a-164b106cc1c3";
+const apiKey = "RGAPI-06b4d378-7f12-4a5c-9e20-644803d361c6";
 
 
 //API: get user ID:
