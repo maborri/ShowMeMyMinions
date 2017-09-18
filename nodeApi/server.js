@@ -5,7 +5,7 @@ var cors = require('cors');
 
 var app = express();
 app.use(cors());
-const apiKey = "RGAPI-09a2b095-cd58-4282-a174-b7e1627bc57b";
+const apiKey = "RGAPI-5075487a-7ff7-472f-9eb8-4e8449fe2898";
 
 
 function getId(region, summoner) {
@@ -14,7 +14,8 @@ function getId(region, summoner) {
     url: url,
     headers: {
       "X-Riot-Token": apiKey
-    }
+    },
+    json: true
   };
   return rp(options);   
 }
@@ -24,42 +25,37 @@ app.get('/getUserId/:region/:summoner', async function (req, res, next) {
   var region = req.params.region;
   var summoner = req.params.summoner;
   try{
-    var id = await getId(region, summoner);
+    var summInfo = await getId(region, summoner);
+    res.send(summInfo);
   }
   catch(err){
     console.log('Got an error:', err.message);
   }
-  res.send(id);
 });
 
-async function getMatchListIds(id, region) { 
-  var url = `https://${region}.api.riotgames.com/lol/match/v3/matchlists/by-account/${id}?beginIndex=0&endIndex=3`;
-  var idsArray = '';
+async function getMatchListShort(id, region) { 
+  var url = `https://${region}.api.riotgames.com/lol/match/v3/matchlists/by-account/${id}`;
+  //var url = `https://${region}.api.riotgames.com/lol/match/v3/matchlists/by-account/${id}?beginIndex=0&endIndex=50`;
   var options = {
     url: url,
     headers: {
       "X-Riot-Token": apiKey
-    }
+    },
+    json: true
   };
-  var matches = await rp(options);
-  console.log('matches list:', matches);
+  var matchesList = await rp(options);
 
-  console.log('matches ids list:', matchIds);
-  try{
-    detailedMatchList = await getMatchDetails(region, matchIds[0].gameId);
-  }
-  catch(err){
-    console.log('Error getting detailed matches list:', err.message);
-  }
-
+  return matchesList.matches;
 }
+
 function getMatchDetails(region, matchId) {
   var url = `https://${region}.api.riotgames.com/lol/match/v3/matches/${matchId}`;
   var options = {
     url: url,
     headers: {
       "X-Riot-Token": apiKey
-    }
+    },
+    json: true
   };
   return rp(options);
 }
@@ -68,17 +64,28 @@ function getMatchDetails(region, matchId) {
 app.get('/getLastMatches/:region/:id', async function (req, res, next) {
     var id = req.params.id;
     var region = req.params.region;
-    var detailedMatchList;
-    var matches;
+    var matchesLong = [], matchesShort;
+    var startTime, endTime;
+    var promises = [];
     try{
-      matches = await getMatchListIds(id, region);
+      matchesShort = await getMatchListShort(id, region);
     }
     catch(err){
       console.log('Error getting matches id list:', err.message);
     }
 
-
-    res.send(detailedMatchList);  
+    try{
+      startTime = Date.now();
+      for(match of matchesShort){        
+         matchesLong.push(await getMatchDetails(region, match.gameId));
+      }
+      endTime = Date.now() - startTime;
+      console.log("endTime: ",endTime/1000);
+    }
+    catch(err){
+      console.log('Error getting detailed matches list:', err.message);
+    }
+    res.send(matchesLong);  
 });
 
 //https://la2.api.riotgames.com/lol/match/v3/matches/481779596
