@@ -17,7 +17,7 @@ export class UserSelectionComponent implements OnInit {
 
   getMatchList(): void {
     this.getUserIdService.getUserId(this.region, this.summonerName).subscribe(res => {
-      this.id = res[1];
+      this.id = res;
       console.log('ID: ', this.id);
     });
   }
