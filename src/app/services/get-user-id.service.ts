@@ -1,15 +1,18 @@
-import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import { HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+import * as _ from 'lodash';
+
 @Injectable()
 export class GetUserIdService {
+  private url: string;
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
   
-  getUserId() {
-    return this.http.get("http://localhost:3000/getUserId")
-    .map((res: Response) => res.json())
-    .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  getUserId(region, summonerName) {
+    this.url = `http://localhost:8081/getUserId/${region}/${summonerName}`;
+    console.log(this.url);
+    return this.http.get(this.url).map(data => _.values(data));
   }
 }

@@ -3,11 +3,10 @@ var express = require('express');
 var request = require('request');
 var rp = require('request-promise');
 var cors = require('cors');
-var batch = require( 'batch-promise' );
 
 var app = express();
 app.use(cors());
-const apiKey = "RGAPI-ea167f61-af3d-4d65-866f-daafcacd33a1";
+const apiKey = "RGAPI-2ec3f180-b2c7-41b7-b7e5-997b266898ee";
 
 
 function getId(region, summoner) {
@@ -119,4 +118,4 @@ app.get('/getLastMatches/:region/:id', async function (req, res, next) {
 app.listen(8081, function () {
    console.log("app listening at 8081");
 })
->>>>>>> dd3ec460b18c98c41c9a413ef80c68338567b136
+

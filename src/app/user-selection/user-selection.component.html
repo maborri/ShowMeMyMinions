@@ -1,14 +1,4 @@
-<div class="container">
-  <div>
-      <p><strong>Temporal input to avoid apikey abuse</strong></p>
-      <label for="apikey">apikey:</label>
-      <input id="apikey" type="text" [(ngModel)]="apikey"/>
-      <p>Using APIKEY: {{apikey}}</p>
-      <hr/>
-  </div>
-</div>
-
-<div class="container">
+<div class="container summoner-input-container">
   <div>
     <label for="summonerInput">Put your summoner name here:</label>
     <input id="summonerInput" type="text" [(ngModel)]="summonerName">
@@ -16,18 +6,18 @@
   <div>
     <label for="serverSelect">Pick your server:</label>
     <select id="serverSelect" [(ngModel)]="region">
-      <option value="BR">BR</option>
-      <option value="EUNE">EUNE</option>
-      <option value="EUW">EUW</option>
-      <option value="JP">JP</option>
-      <option value="KR">KR</option>
-      <option value="LAN">LAN</option>
-      <option value="LAS">LAS</option>
-      <option value="NA">NA</option>
-      <option value="OCE">OCE</option>
-      <option value="RU">RU</option>
-      <option value="TR">TR</option>
+      <option value="br1">BR</option>
+      <option value="eun1">EUNE</option>
+      <option value="euw1">EUW</option>
+      <option value="jp1">JP</option>
+      <option value="kr">KR</option>
+      <option value="la1">LAN</option>
+      <option value="la2">LAS</option>
+      <option value="na1">NA</option>
+      <option value="oc1">OCE</option>
+      <option value="ru">RU</option>
+      <option value="tr1">TR</option>
     </select>
   </div>
-  <button (click)="getMatchList()" >Go!</button>
+  <button (click)="getMatchList()">Go!</button>
 </div>

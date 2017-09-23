@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +19,7 @@ import { GetUserIdService } from './services/get-user-id.service';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpModule,
+    HttpClientModule,
     NgbModule.forRoot()
   ],
   providers: [GetUserIdService],

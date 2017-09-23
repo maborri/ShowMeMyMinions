@@ -2,31 +2,20 @@
   "name": "nodeapi",
   "version": "1.0.0",
   "description": "",
-<<<<<<< HEAD
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-=======
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
->>>>>>> dd3ec460b18c98c41c9a413ef80c68338567b136
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-    "express": "^4.15.4",
-    "request": "^2.81.0"
-=======
     "batch-promise": "^1.0.0",
     "cors": "^2.8.4",
     "express": "^4.15.4",
+    "lodash": "^4.17.4",
     "request": "^2.81.0",
     "request-promise": "^4.2.1"
->>>>>>> dd3ec460b18c98c41c9a413ef80c68338567b136
   },
   "devDependencies": {
     "nodemon": "^1.12.0"

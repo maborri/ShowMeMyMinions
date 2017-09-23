@@ -7,18 +7,18 @@ import { GetUserIdService } from '../services/get-user-id.service';
   styleUrls: ['./user-selection.component.scss']
 })
 export class UserSelectionComponent implements OnInit {
-  apikey: number = 0;
-  summonerName: string = '';
-  region: string = '';
-  id;
-
+  private summonerName: string = '';
+  private region: string = '';
+  private id: number;
   constructor(private getUserIdService: GetUserIdService) { }
 
   ngOnInit() {
   }
 
   getMatchList(): void {
-    this.getUserIdService.getUserId().subscribe(data => this.id = data);
-    console.log(this.id);
+    this.getUserIdService.getUserId(this.region, this.summonerName).subscribe(res => {
+      this.id = res[1];
+      console.log('ID: ', this.id);
+    });
   }
 }
