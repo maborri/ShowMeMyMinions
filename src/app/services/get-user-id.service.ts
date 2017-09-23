@@ -13,7 +13,6 @@ export class GetUserIdService {
   getUserId(region, summonerName) {
     this.url = `http://localhost:8081/getUserId/${region}/${summonerName}`;
     console.log(this.url);
-   // return this.http.get(this.url).map(data => _.values(data));
-   return this.http.get(this.url).map(data => _.map(data, 'accountId'));
+    return this.http.get(this.url).map(data => _.values(data)).catch((err, caught) => caught);   
   }
 }

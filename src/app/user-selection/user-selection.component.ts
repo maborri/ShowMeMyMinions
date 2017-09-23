@@ -10,15 +10,21 @@ export class UserSelectionComponent implements OnInit {
   private summonerName: string = '';
   private region: string = '';
   private id: number;
+  private data;
   constructor(private getUserIdService: GetUserIdService) { }
 
   ngOnInit() {
   }
 
   getMatchList(): void {
-    this.getUserIdService.getUserId(this.region, this.summonerName).subscribe(res => {
-      this.id = res;
-      console.log('ID: ', this.id);
-    });
+    var data = this.getUserIdService.getUserId(this.region, this.summonerName)
+    .subscribe(
+      res => {
+      console.log(res);
+      this.data = res[1];
+      console.log(this.data);
+    },
+      err => console.error('Observer got an error: ' + err)
+    );
   }
 }
