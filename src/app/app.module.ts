@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,7 +8,7 @@ import { UserSelectionComponent } from './user-selection/user-selection.componen
 
 import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { GetUserIdService } from './get-user-id.service';
+import { GetUserIdService } from './services/get-user-id.service';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { GetUserIdService } from './get-user-id.service';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    HttpModule,
     NgbModule.forRoot()
   ],
   providers: [GetUserIdService],
