@@ -6,7 +6,7 @@ var cors = require('cors');
 
 var app = express();
 app.use(cors());
-const apiKey = "RGAPI-2ec3f180-b2c7-41b7-b7e5-997b266898ee";
+const apiKey = "RGAPI-92cbc17e-592a-411b-961c-c6275fa4afbb";
 
 
 function getId(region, summoner) {
@@ -31,6 +31,7 @@ app.get('/getUserId/:region/:summoner', async function (req, res, next) {
   }
   catch(err){
     console.log('Got an error:', err.message);
+    res.status(err.statusCode).send({ error: err.message });
   }
 });
 

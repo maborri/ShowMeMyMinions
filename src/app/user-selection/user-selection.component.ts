@@ -7,24 +7,27 @@ import { GetUserIdService } from '../services/get-user-id.service';
   styleUrls: ['./user-selection.component.scss']
 })
 export class UserSelectionComponent implements OnInit {
-  private summonerName: string = '';
-  private region: string = '';
-  private id: number;
-  private data;
+  summonerName: string = '';
+  region: string = '';
+  getUserError: string;
+  id: number;
+  data: any;
   constructor(private getUserIdService: GetUserIdService) { }
 
   ngOnInit() {
   }
 
   getMatchList(): void {
-    var data = this.getUserIdService.getUserId(this.region, this.summonerName)
-    .subscribe(
-      res => {
-      console.log(res);
-      this.data = res[1];
-      console.log(this.data);
-    },
-      err => console.error('Observer got an error: ' + err)
-    );
+    this.getUserIdService.getUserId(this.region, this.summonerName)
+      .subscribe(
+        res => { 
+          console.log(res)
+        },
+        err => {
+          console.error('Observer got an error: ' + JSON.stringify(err.message));
+          this.getUserError = JSON.stringify(err.message);
+        }
+      );
+    }
   }
-}
+  
