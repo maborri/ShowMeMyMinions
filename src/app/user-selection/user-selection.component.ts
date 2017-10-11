@@ -10,8 +10,8 @@ export class UserSelectionComponent implements OnInit {
   summonerName: string = '';
   region: string = '';
   getUserError: string;
-  id: number;
-  data: any;
+  userInfo: any;
+
   constructor(private getUserIdService: GetUserIdService) { }
 
   ngOnInit() {
@@ -21,7 +21,7 @@ export class UserSelectionComponent implements OnInit {
     this.getUserIdService.getUserId(this.region, this.summonerName)
       .subscribe(
         res => { 
-          console.log(res)
+          this.userInfo = res;
         },
         err => {
           console.error('Observer got an error: ' + JSON.stringify(err.message));

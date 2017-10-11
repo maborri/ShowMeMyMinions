@@ -6,7 +6,7 @@ var cors = require('cors');
 
 var app = express();
 app.use(cors());
-const apiKey = "RGAPI-92cbc17e-592a-411b-961c-c6275fa4afbb";
+const apiKey = "RGAPI-66fcabab-77df-46cb-ae2b-7ea84dee5344";
 
 
 function getId(region, summoner) {
@@ -36,7 +36,7 @@ app.get('/getUserId/:region/:summoner', async function (req, res, next) {
 });
 
 async function getMatchListShort(id, region) { 
- // var url = `https://${region}.api.riotgames.com/lol/match/v3/matchlists/by-account/${id}`;
+  //var url = `https://${region}.api.riotgames.com/lol/match/v3/matchlists/by-account/${id}`;
   var url = `https://${region}.api.riotgames.com/lol/match/v3/matchlists/by-account/${id}?beginIndex=0&endIndex=50`;
   var options = {
     url: url,
@@ -112,9 +112,6 @@ app.get('/getLastMatches/:region/:id', async function (req, res, next) {
     }
 
 });
-
-//https://la2.api.riotgames.com/lol/match/v3/matches/481779596
-
 
 app.listen(8081, function () {
    console.log("app listening at 8081");
