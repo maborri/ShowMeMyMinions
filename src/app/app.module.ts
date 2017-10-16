@@ -4,16 +4,19 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserSelectionComponent } from './user-selection/user-selection.component';
+import { UserSelectionComponent } from './components/user-selection/user-selection.component';
 
 import { FormsModule } from '@angular/forms';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GetUserIdService } from './services/get-user-id.service';
+import { GetMatchHistoryService } from './services/get-match-history.service';
+import { UserBasicInfoComponent } from './components/user-basic-info/user-basic-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserSelectionComponent
+    UserSelectionComponent,
+    UserBasicInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,10 @@ import { GetUserIdService } from './services/get-user-id.service';
     HttpClientModule,
     NgbModule.forRoot()
   ],
-  providers: [GetUserIdService],
+  providers: [
+    GetUserIdService,
+    GetMatchHistoryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

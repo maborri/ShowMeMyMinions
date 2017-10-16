@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { GetUserIdService } from '../services/get-user-id.service';
+import { GetUserIdService } from '../../services/get-user-id.service';
 
 @Component({
   selector: 'smmm-user-selection',
@@ -22,6 +22,8 @@ export class UserSelectionComponent implements OnInit {
       .subscribe(
         res => { 
           this.userInfo = res;
+          this.userInfo.profileIconId = `http://ddragon.leagueoflegends.com/cdn/7.20.2/img/profileicon/${this.userInfo.profileIconId}.png`
+          console.log(this.userInfo);
         },
         err => {
           console.error('Observer got an error: ' + JSON.stringify(err.message));

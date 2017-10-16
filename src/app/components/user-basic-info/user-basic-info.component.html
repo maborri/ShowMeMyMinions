@@ -1,0 +1,15 @@
+<div *ngIf="summonerInfo != null" class="container ">
+    <div class="basic-info-profile-container">
+        <div class="basic-info-profile-data">
+            <p>Summoner found!</p>
+            <p>Name: {{summonerInfo.name}}</p>
+            <p>Level: {{summonerInfo.summonerLevel}}</p>
+        </div>
+        <img class="basic-info-profile-icon" src={{summonerInfo.profileIconId}} alt="">
+        <button class="basic-info-profile-button" (click)="getMatchHistory()">Get match history!</button>    
+    </div>
+</div>
+<div class="container">
+    match info goes here
+    {{matchInfo}}
+</div>
