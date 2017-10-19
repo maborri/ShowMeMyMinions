@@ -18,7 +18,7 @@ export class UserBasicInfoComponent implements OnInit {
   }
 
   getMatchHistory(): void {
-    this.getMatchHistoryService.getMatchHistory(this.region, this.summonerInfo.accountId)
+    this.getMatchHistoryService.getMatchHistory(this.region, this.summonerInfo.accountId, this.summonerInfo.name)
       .subscribe(
         res => { 
           this.matchInfo = JSON.stringify(res);

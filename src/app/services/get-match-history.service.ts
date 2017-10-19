@@ -11,8 +11,8 @@ export class GetMatchHistoryService {
 
   constructor(private http: HttpClient) { }
   
-  getMatchHistory(region, id) {
-    this.url = `http://localhost:8081/getLastMatches/${region}/${id}`;
+  getMatchHistory(region, id, summName) {
+    this.url = `http://localhost:8081/getLastMatches/${region}/${id}/${summName}`;
     console.log(this.url);
     return this.http.get(this.url);  
   }
