@@ -9,7 +9,9 @@ var matchDataFilters = require('./matchDataFilters');
 
 var app = express();
 app.use(cors());
-
+app.on('unhandledRejection', (reason) => {
+  console.log('Reason: ' + reason);
+});
 /*
  * API: get user ID:
  */
@@ -35,55 +37,53 @@ function getId(region, summoner) {
     },
     json: true
   };
-  return rp(options);   
+  return rp(options).catch(function(e){console.log(e)});;   
 }
 
 /*
  * API get last 100 matches:
  */
-app.get('/getLastMatches/:region/:id/:summName', async function (req, res, next) {
+app.get('/getLastMatches/:region/:id/:summName', async function (req, res) {
     var summName = req.params.summName;
     var id = req.params.id;
     var region = req.params.region;
     var matchesLong = [], matchesShort;
     var startTime, endTime;
     var promises = [];
-    try{
-      matchesShort = await getMatchListShort(id, region);
-    }
-    catch(err){
-      console.log('Error getting matches id list:', err.message);
-    }
+
     async function call18Times() {
       for(let i = 0; i < 18; i++){
         if(currentIndex == matchesShort.length) {
           clearInterval(timer);
           matchesLong = await Promise.all(promises);
           var filteredData = matchDataFilters.getFilteredData(matchesLong, summName);
-          console.log('filteredData',filteredData)
-          res.send(filteredData);
+          console.log('game data: ',filteredData);
+          res.end(JSON.stringify(filteredData));
           endTime = Date.now() - startTime;
-          console.log("endTime: ",endTime/1000);  
-          break;            
-        }               
-        promises.push(getMatchDetails(region, matchesShort[i].gameId));
-        currentIndex++;
-        console.log(matchesShort[i].gameId);
+          console.log("endTime: ",endTime/1000);         
+        } else {
+          promises.push(getMatchDetails(region, matchesShort[i].gameId));
+          currentIndex++;
+          console.log(matchesShort[i].gameId);
+        }
       }
     }
+
     try{
-      startTime = Date.now();
-      var currentIndex = 0;
-      call18Times();
-      var timer = setInterval(call18Times, 1500);       
+      matchesShort = await getMatchListShort(id, region);
     }
     catch(err){
-      console.log('Error getting detailed matches list:', err.message);
+      console.log('Error getting matches id list:', err.message);
     }
+    startTime = Date.now();
+    var currentIndex = 0;
+    call18Times();
+    var timer = setInterval(call18Times, 1500);       
 });
 
 async function getMatchDetails(region, matchId) {
   var url = `https://${region}.api.riotgames.com/lol/match/v3/matches/${matchId}`;
+  console.log("matchId: ",matchId);
   var options = {
     url: url,
     headers: {
@@ -93,12 +93,15 @@ async function getMatchDetails(region, matchId) {
     resolveWithFullResponse: true 
   };
   var match;
-  await rp(options).then((response) => {
-     match = response.body;
-  })
-  .catch((response) => {
+  try {
+    await rp(options).then((response) => {
+      match = response.body;
+    });
+  }
+  catch(err){
     console.log('Error getting match details:', err.message);
-  });
+  }  
+
   return match;
 }
 
@@ -112,10 +115,14 @@ async function getMatchListShort(id, region) {
     },
     json: true
   };
-  var matchesList = await rp(options);
-  return matchesList.matches;
+  try {
+    var matchesList = await rp(options);
+    return matchesList.matches;
+  }
+  catch(err){
+    console.log('Error getting match list short:', err.message);
+  }  
 }
-
 
 app.listen(8081, function () {
    console.log("app listening at 8081");
