@@ -10,7 +10,8 @@ export class UserBasicInfoComponent implements OnInit {
   @Input() summonerInfo: any = null;
   @Input() region: string;
   getUserError: string;
-  matchInfo: any;
+  matchInfo: any = null;
+  hasInfo: boolean = false;
 
   constructor(private getMatchHistoryService: GetMatchHistoryService) { }
 
@@ -21,8 +22,8 @@ export class UserBasicInfoComponent implements OnInit {
     this.getMatchHistoryService.getMatchHistory(this.region, this.summonerInfo.accountId, this.summonerInfo.name)
       .subscribe(
         res => { 
-          this.matchInfo = JSON.stringify(res);
-          console.log(JSON.stringify(this.matchInfo));
+          this.matchInfo = res;
+          this.hasInfo = true;
         },
         err => {
           console.error('Observer got an error: ' + JSON.stringify(err.message));

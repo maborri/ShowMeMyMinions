@@ -1,4 +1,5 @@
-<div *ngIf="summonerInfo != null" class="container ">
+<div class="user-info-container">
+<div *ngIf="summonerInfo">
     <div class="basic-info-profile-container">
         <div class="basic-info-profile-data">
             <p>Summoner found!</p>
@@ -9,7 +10,8 @@
         <button class="basic-info-profile-button" (click)="getMatchHistory()">Get match history!</button>    
     </div>
 </div>
-<div class="container">
-    match info goes here
+<div *ngIf="hasInfo" class="container basic-info-stats">
     {{matchInfo}}
+</div>
+
 </div>

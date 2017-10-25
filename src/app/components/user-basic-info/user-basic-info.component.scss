@@ -1,8 +1,14 @@
+.user-info-container {
+    display: flex;
+    flex-direction: column; 
+}
+
 .basic-info-profile-container {
-    border: 1px solid black;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
     padding: 30px;
     display: flex;
-    float: left;
+    justify-content: center;
 }
 
 .basic-info-profile-icon {  
@@ -24,4 +30,9 @@
     display: block;
     margin-left: 20px;
     height: 100px;
+}
+
+.basic-info-stats{
+    margin-top: 50px;
+    border: 1px solid gray;
 }

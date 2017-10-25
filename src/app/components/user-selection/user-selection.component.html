@@ -1,4 +1,4 @@
-<div class="container summoner-input-container">
+<div class="summoner-input-container container">
   <div>
     <label for="summonerInput">Put your summoner name here:</label>
     <input id="summonerInput" type="text" [(ngModel)]="summonerName">
@@ -19,7 +19,7 @@
       <option value="tr1">TR</option>
     </select>
   </div>
-  <button (click)="getMatchList()">Go!</button>
+  <button (click)="getMatchList()">Find summoner!</button>
   <p>{{getUserError}}</p>
 </div>
 <smmm-user-basic-info [summonerInfo]="userInfo" [region]="region"></smmm-user-basic-info>
