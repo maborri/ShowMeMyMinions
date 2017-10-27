@@ -51,22 +51,30 @@ app.get('/getLastMatches/:region/:id/:summName', async function (req, res) {
     var startTime, endTime;
     var promises = [];
 
-    async function call18Times() {
-      for(let i = 0; i < 18; i++){
-        if(currentIndex == matchesShort.length) {
-          clearInterval(timer);
-          matchesLong = await Promise.all(promises);
-          var filteredData = matchDataFilters.getFilteredData(matchesLong, summName);
-          console.log('game data: ',filteredData);
-          res.end(JSON.stringify(filteredData));
-          endTime = Date.now() - startTime;
-          console.log("endTime: ",endTime/1000);         
-        } else {
-          promises.push(getMatchDetails(region, matchesShort[i].gameId));
-          currentIndex++;
-          console.log(matchesShort[i].gameId);
+    async function getDetailsAndFilter() {
+        while(currentIndex < matchesShort.length){
+          if(currentIndex % 18 === 0 && currentIndex !== 0){
+            console.log("18 matches procesed, waiting...");
+            setTimeout(function() {
+              console.log("waited 2 seconds");
+            }, 2000);
+          }
+          if(!currentIndex == (matchesShort.length-1)){ 
+            promises.push(getMatchDetails(region, matchesShort[currentIndex].gameId));         
+            console.log("Proccessing match number: ", matchesShort[currentIndex].gameId);
+            currentIndex++;
+          }
+          else {
+            promises.push(getMatchDetails(region, matchesShort[currentIndex].gameId));    
+            currentIndex++;
+
+            matchesLong = await Promise.all(promises);
+            var filteredData = matchDataFilters.getFilteredData(matchesLong, summName);
+            res.end(JSON.stringify(filteredData));
+            endTime = Date.now() - startTime;
+            console.log("endTime: ",endTime/1000);           
+          }
         }
-      }
     }
 
     try{
@@ -77,8 +85,7 @@ app.get('/getLastMatches/:region/:id/:summName', async function (req, res) {
     }
     startTime = Date.now();
     var currentIndex = 0;
-    call18Times();
-    var timer = setInterval(call18Times, 1500);       
+    getDetailsAndFilter();     
 });
 
 async function getMatchDetails(region, matchId) {
@@ -107,7 +114,7 @@ async function getMatchDetails(region, matchId) {
 
 async function getMatchListShort(id, region) { 
   //var url = `https://${region}.api.riotgames.com/lol/match/v3/matchlists/by-account/${id}`;
-  var url = `https://${region}.api.riotgames.com/lol/match/v3/matchlists/by-account/${id}?beginIndex=0&endIndex=1`;
+  var url = `https://${region}.api.riotgames.com/lol/match/v3/matchlists/by-account/${id}?beginIndex=0&endIndex=2`;
   var options = {
     url: url,
     headers: {
