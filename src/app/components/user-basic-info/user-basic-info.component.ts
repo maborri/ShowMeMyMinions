@@ -9,6 +9,7 @@ import { GetMatchHistoryService } from '../../services/get-match-history.service
 export class UserBasicInfoComponent implements OnInit {
   @Input() summonerInfo: any = null;
   @Input() region: string;
+  @Input() contenderMatchInfo;
   getUserError: string;
   matchInfo: any = null;
   hasInfo = false;

@@ -11,12 +11,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GetUserIdService } from './services/get-user-id.service';
 import { GetMatchHistoryService } from './services/get-match-history.service';
 import { UserBasicInfoComponent } from './components/user-basic-info/user-basic-info.component';
+import { CompareTableComponent } from './components/compare-table/compare-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserSelectionComponent,
-    UserBasicInfoComponent
+    UserBasicInfoComponent,
+    CompareTableComponent
   ],
   imports: [
     BrowserModule,

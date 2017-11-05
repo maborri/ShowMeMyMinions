@@ -1,18 +1,18 @@
 .user-info-container {
+    margin-top: 20px;
     display: flex;
     flex-direction: column; 
+    font-size: 22px;
 }
 
 .basic-info-profile-container {
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
+    border: 1px solid lightblue;
     padding: 30px;
     display: flex;
     justify-content: center;
 }
 
 .basic-info-profile-icon {  
-    border: 1px solid black;
     height: 100px;
     width: 100px;
 }
@@ -33,6 +33,5 @@
 }
 
 .basic-info-stats{
-    margin-top: 50px;
-    border: 1px solid gray;
+
 }

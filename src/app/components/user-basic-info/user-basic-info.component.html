@@ -1,17 +1,17 @@
-<div class="user-info-container">
-<div *ngIf="summonerInfo">
-    <div class="basic-info-profile-container">
-        <div class="basic-info-profile-data">
-            <p>Summoner found!</p>
-            <p>Name: {{summonerInfo.name}}</p>
-            <p>Level: {{summonerInfo.summonerLevel}}</p>
+<div *ngIf="!hasInfo" class="user-info-container container">
+    <div *ngIf="summonerInfo">
+        <div class="basic-info-profile-container">
+            <div class="basic-info-profile-data">
+                <p>Summoner found!</p>
+                <p>Name: {{summonerInfo.name}}</p>
+                <p>Level: {{summonerInfo.summonerLevel}}</p>
+            </div>
+            <img class="basic-info-profile-icon" src={{summonerInfo.profileIconId}} alt="">
+            <button class="basic-info-profile-button" (click)="getMatchHistory()">Get match history!</button>    
         </div>
-        <img class="basic-info-profile-icon" src={{summonerInfo.profileIconId}} alt="">
-        <button class="basic-info-profile-button" (click)="getMatchHistory()">Get match history!</button>    
     </div>
 </div>
 <div *ngIf="hasInfo" class="container basic-info-stats">
-    {{matchInfo}}
+    <smmm-compare-table [matchInfo]="matchInfo"  [contenderMatchInfo]="contenderMatchInfo"></smmm-compare-table>
 </div>
 
-</div>

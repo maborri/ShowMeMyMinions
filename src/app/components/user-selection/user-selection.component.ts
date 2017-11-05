@@ -7,10 +7,12 @@ import { GetUserIdService } from '../../services/get-user-id.service';
   styleUrls: ['./user-selection.component.scss']
 })
 export class UserSelectionComponent implements OnInit {
-  summonerName: string = '';
-  region: string = '';
+  @Input() contenderMatchInfo;
+  summonerName = '';
+  region = '';
   getUserError: string;
   userInfo: any;
+  gotValidInfo = false;
 
   constructor(private getUserIdService: GetUserIdService) { }
 
@@ -20,9 +22,10 @@ export class UserSelectionComponent implements OnInit {
   getMatchList(): void {
     this.getUserIdService.getUserId(this.region, this.summonerName)
       .subscribe(
-        res => { 
+        res => {
           this.userInfo = res;
           this.userInfo.profileIconId = `http://ddragon.leagueoflegends.com/cdn/7.20.2/img/profileicon/${this.userInfo.profileIconId}.png`
+          this.gotValidInfo = true;
           console.log(this.userInfo);
         },
         err => {
@@ -32,4 +35,4 @@ export class UserSelectionComponent implements OnInit {
       );
     }
   }
-  
+

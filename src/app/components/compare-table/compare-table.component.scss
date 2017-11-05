@@ -1,0 +1,29 @@
+.table-column {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.table-column-header {
+    padding: 8px;
+}
+
+.table-half-column {
+    display: inline-block;
+    flex-wrap: nowrap;
+}
+
+.table td {
+    border-top: 1px solid lightblue;
+}
+
+.rival-container {
+    display: inline-block;
+}
+
+.stats-container {
+    display:flex;
+}
+
+.table-column-subtitle {
+    color: gray;
+}

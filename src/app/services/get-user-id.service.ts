@@ -10,11 +10,11 @@ export class GetUserIdService {
   url: string;
 
   constructor(private http: HttpClient) { }
-  
+
   getUserId(region, summonerName) {
     this.url = `http://localhost:8081/getUserId/${region}/${summonerName}`;
     console.log(this.url);
-    return this.http.get(this.url);  
+    return this.http.get(this.url);
   }
 }
 

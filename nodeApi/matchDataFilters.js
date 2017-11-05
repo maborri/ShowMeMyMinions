@@ -49,6 +49,7 @@ getFilteredData = (data, summName) => {
     }, this);
     
     console.log('---------------- gamedataPerId ---------------- ', gamedataPerId);
+    console.log('---------------- summName ---------------- ', summName);
     console.log('---------------- kills ---------------- ', kills);
     console.log('---------------- deaths ---------------- ', deaths);
     console.log('---------------- assists ---------------- ', assists);
@@ -63,6 +64,7 @@ getFilteredData = (data, summName) => {
     console.log('---------------- neutralMinionsKilled ---------------- ', neutralMinionsKilled);
 
     var agregatedInfo = {
+        summName,
         matchesFound,
         kills, deaths, assists, 
         doubleKills, tripleKills, quadraKills, pentaKills,
