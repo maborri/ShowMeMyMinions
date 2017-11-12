@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { GetMatchHistoryService } from '../../services/get-match-history.service';
 
 @Component({
@@ -7,25 +7,22 @@ import { GetMatchHistoryService } from '../../services/get-match-history.service
   styleUrls: ['./user-basic-info.component.scss']
 })
 export class UserBasicInfoComponent implements OnInit {
-  @Input() summonerInfo: any = null;
-  @Input() region: string;
-  @Input() contenderMatchInfo;
+  @Input() userInfo: any;
+  @Output() matchesFound: EventEmitter<any> = new EventEmitter<any>();
   getUserError: string;
-  matchInfo: any = null;
-  hasInfo = false;
 
   constructor(private getMatchHistoryService: GetMatchHistoryService) { }
 
   ngOnInit() {
+
   }
 
   getMatchHistory(): void {
-    this.getMatchHistoryService.getMatchHistory(this.region, this.summonerInfo.accountId, this.summonerInfo.name)
+    this.getMatchHistoryService.getMatchHistory(this.userInfo.region, this.userInfo.accountId, this.userInfo.name)
       .subscribe(
         res => {
           console.log('matchInfo: ', res);
-          this.matchInfo = res;
-          this.hasInfo = true;
+          this.matchesFound.emit(res);
         },
         err => {
           console.error('Observer got an error: ' + JSON.stringify(err.message));

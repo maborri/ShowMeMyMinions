@@ -1,92 +1,89 @@
   
-  <div class="stats-container">
-    <div class="table-column">
-        <h2 class="table-column-header">{{ matchInfo.agregatedInfo.summName }} stats:</h2>  
-        <h6 class="table-column-subtitle">Matches analized: {{ matchInfo.agregatedInfo.matchesFound }}</h6>
+  <div class="stats-container container">
+    <div class="table-column md-col-4"  *ngIf="!hideDiv">
+        <h2 class="table-column-header">{{ userMatches.agregatedInfo.summName }} stats:</h2>  
+        <h6 class="table-column-subtitle">Matches analized: {{ userMatches.agregatedInfo.matchesFound }}</h6>
         <table class="table">
             <tr>
-            <td>Kills:</td><td>{{ matchInfo.agregatedInfo.kills }}</td>
+            <td>Kills:</td><td>{{ userMatches.agregatedInfo.kills }}</td>
             </tr>
             <tr>
-                <td>Deaths:</td><td>{{ matchInfo.agregatedInfo.deaths }}</td>
+                <td>Deaths:</td><td>{{ userMatches.agregatedInfo.deaths }}</td>
             </tr>
             <tr>
-                <td>Assists:</td><td>{{ matchInfo.agregatedInfo.assists }}</td>
+                <td>Assists:</td><td>{{ userMatches.agregatedInfo.assists }}</td>
             </tr>
             <tr>
-                <td>Double kills:</td><td>{{ matchInfo.agregatedInfo.doubleKills }}</td>
+                <td>Double kills:</td><td>{{ userMatches.agregatedInfo.doubleKills }}</td>
             </tr>
             <tr>
-                <td>Triple kills:</td><td>{{ matchInfo.agregatedInfo.tripleKills }}</td>
+                <td>Triple kills:</td><td>{{ userMatches.agregatedInfo.tripleKills }}</td>
             </tr>
             <tr>
-                <td>Quadra kills:</td><td>{{ matchInfo.agregatedInfo.quadraKills }}</td>
+                <td>Quadra kills:</td><td>{{ userMatches.agregatedInfo.quadraKills }}</td>
             </tr>
             <tr>
-                <td>Penta kills:</td><td>{{ matchInfo.agregatedInfo.pentaKills }}</td>
+                <td>Penta kills:</td><td>{{ userMatches.agregatedInfo.pentaKills }}</td>
             </tr>
             <tr>
-                <td>Gold earned:</td><td>{{ matchInfo.agregatedInfo.goldEarned }}</td>
+                <td>Gold earned:</td><td>{{ userMatches.agregatedInfo.goldEarned }}</td>
             </tr>
             <tr>
-                <td>Total damage dealt:</td><td>{{ matchInfo.agregatedInfo.totalDamageDealtToChampions }}</td>
+                <td>Total damage dealt:</td><td>{{ userMatches.agregatedInfo.totalDamageDealtToChampions }}</td>
             </tr>
             <tr>
-                <td>Total minions killed:</td><td>{{ matchInfo.agregatedInfo.totalMinionsKilled }}</td>
+                <td>Total minions killed:</td><td>{{ userMatches.agregatedInfo.totalMinionsKilled }}</td>
             </tr>
             <tr>
-                <td>Neutral minions killed:</td><td>{{ matchInfo.agregatedInfo.neutralMinionsKilled }}</td>
+                <td>Neutral minions killed:</td><td>{{ userMatches.agregatedInfo.neutralMinionsKilled }}</td>
             </tr>
         </table>
     </div>
-
-  <div class="rival-container">
-    <smmm-user-selection *ngIf="!contenderMatchInfo" [contenderMatchInfo]="matchInfo"></smmm-user-selection>
-  </div>
 
   <div *ngIf="contenderMatchInfo" class="table-column">
     <h2 class="table-column-header">Performance:</h2>  
     <h6 class="table-column-subtitle">and the winner is...  <button (click)="showResults()">Calculate final score</button></h6>
     <table class="table">
         <tr>
-            <td>Kills:</td><td>{{ results[0] > 0 ? contenderMatchInfo.agregatedInfo.summName : matchInfo.agregatedInfo.summName }}</td> <td *ngIf="showFinalResults"> {{ points[0] }} points!</td>
+            <td>Kills:</td><td [ngClass]="results[0] > 0 ? 'win' : 'lose'">{{ results[0] > 0 ? "Win" : "Lose"  }}</td> <td *ngIf="showFinalResults"> {{ points[0] }} points!</td>
         </tr>
         <tr>
-            <td>Deaths:</td><td>{{ results[1] < 0 ? contenderMatchInfo.agregatedInfo.summName : matchInfo.agregatedInfo.summName }}</td> <td *ngIf="showFinalResults"> {{ points[1] }} points!</td>
+            <td>Deaths:</td><td [ngClass]="results[1] < 0 ? 'win' : 'lose'">{{ results[1] < 0 ? "Win" : "Lose" }}</td> <td *ngIf="showFinalResults"> {{ points[1] }} points!</td>
         </tr>
         <tr>
-            <td>Assists:</td><td>{{ results[2] > 0 ? contenderMatchInfo.agregatedInfo.summName : matchInfo.agregatedInfo.summName }}</td> <td *ngIf="showFinalResults"> {{ points[2] }} points!</td>
+            <td>Assists:</td><td [ngClass]="results[2] > 0 ? 'win' : 'lose'">{{ results[2] > 0 ? "Win" : "Lose" }}</td> <td *ngIf="showFinalResults"> {{ points[2] }} points!</td>
         </tr>
         <tr>
-            <td>Double kills:</td><td>{{ results[3] > 0 ? contenderMatchInfo.agregatedInfo.summName : matchInfo.agregatedInfo.summName }}</td> <td *ngIf="showFinalResults"> {{ points[3] }} points!</td>
+            <td>Double kills:</td><td [ngClass]="results[3] > 0 ? 'win' : 'lose'">{{ results[3] > 0 ? "Win" : "Lose" }}</td> <td *ngIf="showFinalResults"> {{ points[3] }} points!</td>
         </tr>
         <tr>
-            <td>Triple kills:</td><td>{{ results[4] > 0 ? contenderMatchInfo.agregatedInfo.summName : matchInfo.agregatedInfo.summName }}</td> <td *ngIf="showFinalResults"> {{ points[4] }} points!</td>
+            <td>Triple kills:</td><td [ngClass]="results[4] > 0 ? 'win' : 'lose'">{{ results[4] > 0 ? "Win" : "Lose" }}</td> <td *ngIf="showFinalResults"> {{ points[4] }} points!</td>
         </tr>
         <tr>
-            <td>Quadra kills:</td><td>{{ results[5] > 0 ? contenderMatchInfo.agregatedInfo.summName : matchInfo.agregatedInfo.summName }}</td> <td *ngIf="showFinalResults"> {{ points[5] }} points!</td>
+            <td>Quadra kills:</td><td [ngClass]="results[5] > 0 ? 'win' : 'lose'">{{ results[5] > 0 ? "Win" : "Lose" }}</td> <td *ngIf="showFinalResults"> {{ points[5] }} points!</td>
         </tr>
         <tr>
-            <td>Penta kills:</td><td>{{ results[6] > 0 ? contenderMatchInfo.agregatedInfo.summName : matchInfo.agregatedInfo.summName }}</td> <td *ngIf="showFinalResults"> {{ points[6] }} points!</td>
+            <td>Penta kills:</td><td [ngClass]="results[6] > 0 ? 'win' : 'lose'">{{ results[6] > 0 ? "Win" : "Lose" }}</td> <td *ngIf="showFinalResults"> {{ points[6] }} points!</td>
         </tr>
         <tr>
-            <td>Gold earned:</td><td>{{ results[7] > 0 ? contenderMatchInfo.agregatedInfo.summName : matchInfo.agregatedInfo.summName }}</td> <td *ngIf="showFinalResults"> {{ points[7] }} points!</td>
+            <td>Gold earned:</td><td [ngClass]="results[7] > 0 ? 'win' : 'lose'">{{ results[7] > 0 ? "Win" : "Lose" }}</td> <td *ngIf="showFinalResults"> {{ points[7] }} points!</td>
         </tr>
         <tr>
-            <td>Total damage dealt:</td><td>{{ results[8] > 0 ? contenderMatchInfo.agregatedInfo.summName : matchInfo.agregatedInfo.summName }}</td> <td *ngIf="showFinalResults"> {{ points[8] }} points!</td>
+            <td>Total damage dealt:</td><td [ngClass]="results[8] > 0 ? 'win' : 'lose'">{{ results[8] > 0 ? "Win" : "Lose" }}</td> <td *ngIf="showFinalResults"> {{ points[8] }} points!</td>
         </tr>
         <tr>
-            <td>Total minions killed:</td><td>{{ results[9] > 0 ? contenderMatchInfo.agregatedInfo.summName : matchInfo.agregatedInfo.summName }}</td> <td *ngIf="showFinalResults"> {{ points[9] }} points!</td>
+            <td>Total minions killed:</td><td [ngClass]="results[9] > 0 ? 'win' : 'lose'">{{ results[9] > 0 ? "Win" : "Lose" }}</td> <td *ngIf="showFinalResults"> {{ points[9] }} points!</td>
         </tr>
         <tr>
-            <td>Neutral minions killed:</td><td>{{ results[10] > 0 ? contenderMatchInfo.agregatedInfo.summName : matchInfo.agregatedInfo.summName }}</td> <td *ngIf="showFinalResults"> {{ points[10] }} points!</td>
+            <td>Neutral minions killed:</td><td [ngClass]="results[10] > 0 ? 'win' : 'lose'">{{ results[10] > 0 ? "Win" : "Lose" }}</td> <td *ngIf="showFinalResults"> {{ points[10] }} points!</td>
         </tr>
     </table>
     
     <div *ngIf="showFinalResults">
-        <h3>Your score:{{ finalScore }} points!</h3>
-        <h1>WINNER: {{ finalScore > 0 ? contenderMatchInfo.agregatedInfo.summName : matchInfo.agregatedInfo.summName }}!!!</h1>
+        <h3 class="final-score">Your score:{{ finalScore | number : '1.2-2' }} points!</h3>
     </div>
+    <h1>WINNER: {{ finalScore > 0 ? contenderMatchInfo.agregatedInfo.summName : matchInfo.agregatedInfo.summName }}!!!</h1>
+    <button (click)="findAnotherRival()">Find another rival</button>
 </div>
 </div>
 

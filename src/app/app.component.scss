@@ -1,0 +1,18 @@
+.userselector {
+    display:flex;
+    flex-direction: row;
+}
+
+.secondUserSelector {
+    display: inline-block;
+}
+
+.user-selector, .user-info {
+    display: inline-block;
+    padding: 20px;
+}
+
+.stats-table {
+    display:flex;
+    flex-direction: row;
+}

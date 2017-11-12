@@ -1,11 +1,11 @@
-<div *ngIf="!gotValidInfo" class="summoner-input-container container">
+<div class="summoner-input-container">
   <div class="line-container">
     <label for="summonerInput">Put the summoner name here:</label>
-    <input id="summonerInput" type="text" [(ngModel)]="summonerName">
+    <input id="summonerInput" type="text" [(ngModel)]="summInfo.summonerName">
   </div>
   <div class="line-container">
     <label for="serverSelect">Pick the server:</label>
-    <select id="serverSelect" [(ngModel)]="region">
+    <select id="serverSelect" [(ngModel)]="summInfo.region">
       <option value="br1">BR</option>
       <option value="eun1">EUNE</option>
       <option value="euw1">EUW</option>
@@ -19,7 +19,6 @@
       <option value="tr1">TR</option>
     </select>
   </div>
-  <button class="line-container" (click)="getMatchList()">Find {{ contenderMatchInfo == null ? '' : 'rival' }} summoner!</button>
+  <button class="line-container" (click)="getMatchList()">Find summoner!</button>
   <p>{{getUserError}}</p>
 </div>
-<smmm-user-basic-info [summonerInfo]="userInfo" [region]="region" [contenderMatchInfo]="contenderMatchInfo"></smmm-user-basic-info>

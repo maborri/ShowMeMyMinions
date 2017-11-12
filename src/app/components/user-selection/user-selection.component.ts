@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { GetUserIdService } from '../../services/get-user-id.service';
+
 
 @Component({
   selector: 'smmm-user-selection',
@@ -7,11 +8,13 @@ import { GetUserIdService } from '../../services/get-user-id.service';
   styleUrls: ['./user-selection.component.scss']
 })
 export class UserSelectionComponent implements OnInit {
-  @Input() contenderMatchInfo;
-  summonerName = '';
-  region = '';
+  @Output() userUpdated: EventEmitter<any> = new EventEmitter<any>();
+  summInfo = {
+    summonerName: '',
+    region: ''
+  }
   getUserError: string;
-  userInfo: any;
+  info: any;
   gotValidInfo = false;
 
   constructor(private getUserIdService: GetUserIdService) { }
@@ -20,13 +23,15 @@ export class UserSelectionComponent implements OnInit {
   }
 
   getMatchList(): void {
-    this.getUserIdService.getUserId(this.region, this.summonerName)
+    this.getUserIdService.getUserId(this.summInfo.region, this.summInfo.summonerName)
       .subscribe(
         res => {
-          this.userInfo = res;
-          this.userInfo.profileIconId = `http://ddragon.leagueoflegends.com/cdn/7.20.2/img/profileicon/${this.userInfo.profileIconId}.png`
+          this.info = res;
+          this.info.profileIconId = `http://ddragon.leagueoflegends.com/cdn/7.20.2/img/profileicon/${this.info.profileIconId}.png`
+          this.info.region = this.summInfo.region;
           this.gotValidInfo = true;
-          console.log(this.userInfo);
+          console.log(this.info);
+          this.userUpdated.emit(this.info);
         },
         err => {
           console.error('Observer got an error: ' + JSON.stringify(err.message));

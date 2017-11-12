@@ -1,3 +1,32 @@
-<smmm-user-selection></smmm-user-selection>
+<div class="container">
+    <div class="userselector">
+        <smmm-user-selection 
+            class="md-col-6 user-selector" 
+            (userUpdated)='onUserSelected($event)'>
+        </smmm-user-selection>
+        <smmm-user-basic-info 
+            class="md-col-6 user-info" 
+            (matchesFound)='onMatchesFound($event)' 
+            *ngIf="userInfo" 
+            [userInfo]="userInfo">
+        </smmm-user-basic-info>
+    </div>
 
-<router-outlet></router-outlet>
+    <div class="stats-table">
+        <smmm-compare-table [userMatches]="userMatches" *ngIf="userMatches"></smmm-compare-table>
+
+        <div class="secondUserSelector" *ngIf="userMatches">
+            <smmm-user-selection 
+                class="md-col-6 user-selector" 
+                (userUpdated)='onSecondUserSelected($event)'>
+            </smmm-user-selection>
+            <smmm-user-basic-info 
+                class="md-col-6 user-info" 
+                (matchesFound)='onSecondMatchesFound($event)' 
+                *ngIf="secondUserInfo" 
+                [userInfo]="secondUserInfo">
+            </smmm-user-basic-info>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>
