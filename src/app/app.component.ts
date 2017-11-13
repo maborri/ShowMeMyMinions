@@ -11,18 +11,20 @@ export class AppComponent {
   secondUserInfo;
   userMatches;
   secondUserMatches;
-  
+  finalScore;
+  results;
+
   onUserSelected(data) {
-    console.log("en user selected:", data);
     this.userInfo = data;
   }
 
   onMatchesFound(matches) {
     this.userMatches = matches;
+    this.secondUserMatches = null;
+    this.secondUserInfo = null;
   }
 
   onSecondUserSelected(data) {
-    console.log("en secondUserInfo selected:", data);
     this.secondUserInfo = data;
   }
 
@@ -30,5 +32,14 @@ export class AppComponent {
     this.secondUserMatches = matches;
   }
 
+  onResetMatches(event) {
+    this.secondUserMatches = null;
+    this.secondUserInfo = null;
+    this.results = null;
+  }
   
+  onShowResult(results) {
+    console.log("on show result:", results)
+    this.results = results
+  }
 }

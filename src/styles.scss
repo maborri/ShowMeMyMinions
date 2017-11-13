@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-    background-color: #ecfffd;
-}
+@import 'app/css/buttons';
+@import 'app/css/colors';
 
-.hideDiv {
-    display: none;
+body {
+    background-color: $background-color;
+    font-family: Arial;
 }

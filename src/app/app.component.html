@@ -1,32 +1,60 @@
+<smmm-header></smmm-header>
+
 <div class="container">
     <div class="userselector">
         <smmm-user-selection 
-            class="md-col-6 user-selector" 
+            class="col-md-6 user-selector" 
             (userUpdated)='onUserSelected($event)'>
         </smmm-user-selection>
         <smmm-user-basic-info 
-            class="md-col-6 user-info" 
+            class="col-md-6 user-info" 
             (matchesFound)='onMatchesFound($event)' 
             *ngIf="userInfo" 
             [userInfo]="userInfo">
         </smmm-user-basic-info>
     </div>
 
-    <div class="stats-table">
-        <smmm-compare-table [userMatches]="userMatches" *ngIf="userMatches"></smmm-compare-table>
+    <smmm-result-display 
+        [results]="results" 
+        *ngIf="results"
+        (resetSecondUserMatches)="onResetMatches($event)" >
+    </smmm-result-display>
 
-        <div class="secondUserSelector" *ngIf="userMatches">
+    <div class="stats-table container">
+        <smmm-compare-table 
+            class="col-md-4"
+            [userMatches]="userMatches" 
+            *ngIf="userMatches">
+        </smmm-compare-table>
+
+        <div class="secondUserSelector" *ngIf="userMatches && !secondUserMatches">
             <smmm-user-selection 
-                class="md-col-6 user-selector" 
+                class="user-selector" 
                 (userUpdated)='onSecondUserSelected($event)'>
             </smmm-user-selection>
             <smmm-user-basic-info 
-                class="md-col-6 user-info" 
+                class="user-info" 
                 (matchesFound)='onSecondMatchesFound($event)' 
                 *ngIf="secondUserInfo" 
                 [userInfo]="secondUserInfo">
             </smmm-user-basic-info>
         </div>
+
+        <smmm-compare-table 
+            class="col-md-4"
+            [userMatches]="secondUserMatches" 
+            *ngIf="secondUserMatches">
+        </smmm-compare-table>
+
+        <smmm-final-score-table 
+            class="col-md-4"          
+            (sendFinalScore)="onShowResult($event)"
+            *ngIf="userMatches && secondUserMatches" 
+            [userMatches]="userMatches" 
+            [secondUserMatches]="secondUserMatches">
+        </smmm-final-score-table>
     </div>
+
     <router-outlet></router-outlet>
 </div>
+

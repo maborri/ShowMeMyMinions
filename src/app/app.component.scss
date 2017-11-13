@@ -1,3 +1,5 @@
+@import 'css/colors';
+
 .userselector {
     display:flex;
     flex-direction: row;
@@ -12,7 +14,39 @@
     padding: 20px;
 }
 
+.userselector {
+    & .user-selector {
+        margin: 20px 0px 20px 0;
+        height: 190px;
+        background-color: darken($background-color, 2);
+        box-shadow: 1px 1px 2px 2px green;
+    }
+
+    & .user-info {
+        margin: 20px 0px 20px 2px;
+        background-color: darken($background-color, 2);
+        box-shadow: 1px 1px 2px 2px green;
+    }
+}
+
+.secondUserSelector {
+    & .user-selector {
+        display: block;
+        margin: 20px 2px 20px 0;
+        background-color: darken($background-color, 2);
+        box-shadow: 1px 1px 2px 2px green;
+    }
+
+    & .user-info {
+        display: block;
+        margin: 20px 0px 20px 2px;
+        background-color: darken($background-color, 2);
+        box-shadow: 1px 1px 2px 2px green;
+    }
+}
+
 .stats-table {
     display:flex;
     flex-direction: row;
 }
+

@@ -12,13 +12,19 @@ import { GetUserIdService } from './services/get-user-id.service';
 import { GetMatchHistoryService } from './services/get-match-history.service';
 import { UserBasicInfoComponent } from './components/user-basic-info/user-basic-info.component';
 import { CompareTableComponent } from './components/compare-table/compare-table.component';
+import { FinalScoreTableComponent } from './components/final-score-table/final-score-table.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ResultDisplayComponent } from './components/result-display/result-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserSelectionComponent,
     UserBasicInfoComponent,
-    CompareTableComponent
+    CompareTableComponent,
+    FinalScoreTableComponent,
+    HeaderComponent,
+    ResultDisplayComponent
   ],
   imports: [
     BrowserModule,

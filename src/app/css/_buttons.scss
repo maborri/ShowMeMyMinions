@@ -1,0 +1,17 @@
+@import 'colors';
+
+.primary-button {
+    background-color: $light-gray;
+    color: #000;
+    cursor: pointer;
+    border: 1px solid darken($border-color, 5);
+    font-family: Arial, Helvetica, sans-serif;
+    &:hover {
+        background-color: darken($light-gray, 5); 
+    }
+
+    &:focus, &:active {
+        box-shadow: none;
+        outline: none;
+    }
+}
