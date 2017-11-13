@@ -1,0 +1,39 @@
+<div class="results-table-column">
+  <h2 class="results-table-column-header">Performance:</h2>  
+  <h6 class="results-table-column-subtitle">and the winner is...  <button class="primary-button" (click)="showResults()">Calculate final score</button></h6>
+  <table class="table">
+      <tr>
+          <td>Kills:</td><td [ngClass]="calculateResult(results[0])">{{ calculateResult(results[0]) }}</td> <td *ngIf="showPoints"> {{ points[0] }} points!</td>
+      </tr>
+      <tr>
+          <td>Deaths:</td><td [ngClass]="results[1] <= 0 ? 'win' : 'lose'">{{ calculateResult(-results[1]) }}</td> <td *ngIf="showPoints"> {{ points[1] }} points!</td>
+      </tr>
+      <tr>
+          <td>Assists:</td><td [ngClass]="results[2] >= 0 ? 'win' : 'lose'">{{ calculateResult(results[2]) }}</td> <td *ngIf="showPoints"> {{ points[2] }} points!</td>
+      </tr>
+      <tr>
+          <td>Double kills:</td><td [ngClass]="results[3] >= 0 ? 'win' : 'lose'">{{ calculateResult(results[3]) }}</td> <td *ngIf="showPoints"> {{ points[3] }} points!</td>
+      </tr>
+      <tr>
+          <td>Triple kills:</td><td [ngClass]="results[4] >= 0 ? 'win' : 'lose'">{{ calculateResult(results[4]) }}</td> <td *ngIf="showPoints"> {{ points[4] }} points!</td>
+      </tr>
+      <tr>
+          <td>Quadra kills:</td><td [ngClass]="results[5] >= 0 ? 'win' : 'lose'">{{ calculateResult(results[5]) }}</td> <td *ngIf="showPoints"> {{ points[5] }} points!</td>
+      </tr>
+      <tr>
+          <td>Penta kills:</td><td [ngClass]="results[6] >= 0 ? 'win' : 'lose'">{{ calculateResult(results[6]) }}</td> <td *ngIf="showPoints"> {{ points[6] }} points!</td>
+      </tr>
+      <tr>
+          <td>Gold earned:</td><td [ngClass]="results[7] >= 0 ? 'win' : 'lose'">{{ calculateResult(results[7]) }}</td> <td *ngIf="showPoints"> {{ points[7] }} points!</td>
+      </tr>
+      <tr>
+          <td>Total damage dealt:</td><td [ngClass]="results[8] >= 0 ? 'win' : 'lose'">{{ calculateResult(results[8]) }}</td> <td *ngIf="showPoints"> {{ points[8] }} points!</td>
+      </tr>
+      <tr>
+          <td>Total minions killed:</td><td [ngClass]="results[9] >= 0 ? 'win' : 'lose'">{{ calculateResult(results[9]) }}</td> <td *ngIf="showPoints"> {{ points[9] }} points!</td>
+      </tr>
+      <tr>
+          <td>Neutral minions killed:</td><td [ngClass]="results[10] >= 0 ? 'win' : 'lose'">{{ calculateResult(results[10]) }}</td> <td *ngIf="showPoints"> {{ points[10] }} points!</td>
+      </tr>
+  </table>
+</div>

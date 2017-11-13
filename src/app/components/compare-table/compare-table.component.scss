@@ -1,10 +1,16 @@
+@import '../../css/colors';
+
 .table-column {
     display: inline-block;
-    margin-right: 20px;
-}
+    margin: auto;
 
-.table-column-header {
-    padding: 8px;
+    &-header {
+        padding-top: 10px;
+        text-align: center;
+    }
+    &-subtitle {
+        text-align: center;
+    }
 }
 
 .table-half-column {
@@ -12,8 +18,8 @@
     flex-wrap: nowrap;
 }
 
-.table td {
-    border-top: 1px solid lightblue;
+.table tbody td {
+    border-top: 1px solid #000;
 }
 
 .rival-container {
@@ -21,19 +27,14 @@
 }
 
 .stats-container {
+    background-color: lighten($background-color, 5);
     display:flex;
+    box-shadow: 1px 1px 2px 2px green;  
 }
 
 .table-column-subtitle {
-    color: gray;
-}
-
-.win {
-    color: blue;
-}
-
-.lose {
-    color: red;
+    color: $blue;
+    margin: 11px 0;
 }
 
 .final-score {

@@ -1,18 +1,29 @@
 .basic-info-profile-container {
-
+    display: inline-block;
 }
 
 .basic-info-profile-icon {  
-    margin: 10px;
+    border: 2px solid black;
+    margin-left: 5px;
+    margin-top: -50px;
     height: 100px;
     width: 100px;
     display: inline-block;
 }
 
-.basic-info-profile-data {
+.basic-info-profile-data {    
     display: inline-block;
+
+    h4, h6 {
+        font-weight: 600;
+    }
+
 }
 
-.basic-info-profile-icon {
+.basic-info-profile-button {
+    margin-top: 15px;
+}
 
+.text-image-container {
+    margin-left: 10px 0;
 }

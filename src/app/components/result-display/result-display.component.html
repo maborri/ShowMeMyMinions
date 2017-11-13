@@ -1,0 +1,5 @@
+<div class="result-display-container">
+  <div class="final-score">Your score:  <span class="final-score-points">{{ results.finalScore | number : '1.2-2' }} points.</span></div>
+  <div class="final-score-winner">WINNER:  <span class="final-score-name">{{ results.winner }}!</span></div>
+  <button class="primary-button final-score-button" (click)="findAnotherRival()">Find another rival</button>
+</div>

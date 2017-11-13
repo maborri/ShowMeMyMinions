@@ -3,5 +3,10 @@
 }
 
 .line-container {
-    margin: 10px;
+    margin: 10px 0;
+    font-weight: 600;
+
+    .primary-button {
+        font-weight: 500;
+    }
 }

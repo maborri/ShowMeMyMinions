@@ -1,11 +1,14 @@
 <div class="basic-info-profile-container">
-    <div class="basic-info-profile-data">
-        <h4>Summoner found!</h4>
-        <h6>Name: {{userInfo.name}}</h6>
-        <h6> Level: {{userInfo.summonerLevel}}</h6>
-    </div>
-    <img class="basic-info-profile-icon" src={{userInfo.profileIconId}} alt="">
-    <button class="basic-info-profile-button" (click)="getMatchHistory()">Get match history!</button>    
+    <div class="text-image-container">
+        <div class="basic-info-profile-data">
+            <h4>Summoner found!</h4>
+            <h6>Name: {{userInfo.name}}</h6>
+            <h6> Level: {{userInfo.summonerLevel}}</h6>
+        </div>
+        <img class="basic-info-profile-icon" src={{userInfo.profileIconId}} alt="">
+    </div>    
+
+    <button class="basic-info-profile-button primary-button" (click)="getMatchHistory()">Get match history!</button>    
 </div>
 
 

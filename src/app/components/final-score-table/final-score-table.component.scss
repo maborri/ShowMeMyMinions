@@ -1,0 +1,28 @@
+
+@import '../../css/colors';
+
+.table td {
+    border-top: 1px solid $cyan;
+}
+
+.results-table-column {
+    background-color: lighten($background-color, 5);
+    box-shadow: 1px 1px 2px 2px green;
+
+    &-header {
+        text-align: center;
+        padding-top: 10px;
+    }
+    &-subtitle {
+        text-align: center;
+    }
+}
+
+
+.Win {
+    color: black;
+}
+
+.Lose {
+    color: red;
+}
