@@ -7,6 +7,7 @@
             (userUpdated)='onUserSelected($event)'>
         </smmm-user-selection>
         <smmm-user-basic-info 
+            [@slide]
             class="col-md-6 user-info" 
             (matchesFound)='onMatchesFound($event)' 
             *ngIf="userInfo" 
@@ -22,17 +23,24 @@
 
     <div class="stats-table container">
         <smmm-compare-table 
+            [@fade]
             class="col-md-4"
+            id="first-table"
             [userMatches]="userMatches" 
             *ngIf="userMatches">
         </smmm-compare-table>
 
-        <div class="secondUserSelector" *ngIf="userMatches && !secondUserMatches">
+        <div class="secondUserSelector" *ngIf="userMatches && !secondUserMatches" [@fade-fast]>
+            <smmm-pro-player-list
+                (gotProPlayer)='onProPlayerSelected($event)'
+                class="pro-player-container">
+            </smmm-pro-player-list>    
             <smmm-user-selection 
                 class="user-selector" 
                 (userUpdated)='onSecondUserSelected($event)'>
             </smmm-user-selection>
             <smmm-user-basic-info 
+                [@fade-fast]
                 class="user-info" 
                 (matchesFound)='onSecondMatchesFound($event)' 
                 *ngIf="secondUserInfo" 
@@ -41,13 +49,15 @@
         </div>
 
         <smmm-compare-table 
+            [@slide]
             class="col-md-4"
             [userMatches]="secondUserMatches" 
             *ngIf="secondUserMatches">
         </smmm-compare-table>
 
         <smmm-final-score-table 
-            class="col-md-4"          
+            [@slide]
+            class="col-md-4 final-score-table"          
             (sendFinalScore)="onShowResult($event)"
             *ngIf="userMatches && secondUserMatches" 
             [userMatches]="userMatches" 
@@ -57,4 +67,3 @@
 
     <router-outlet></router-outlet>
 </div>
-

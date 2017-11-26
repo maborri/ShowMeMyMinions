@@ -1,4 +1,4 @@
 module.exports = {
-    apiKey: "RGAPI-a6f8a02d-452a-4195-bd1d-aec1a1be03fa",
-    ddVersion: "7.22.1"
+    apiKey: "RGAPI-5b6d151c-2447-4c7f-bf9f-34bfac7a31d3",
+    ddVersion: "7.23.1"
 }

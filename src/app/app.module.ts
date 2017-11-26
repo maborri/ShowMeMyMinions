@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
@@ -15,6 +16,7 @@ import { CompareTableComponent } from './components/compare-table/compare-table.
 import { FinalScoreTableComponent } from './components/final-score-table/final-score-table.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ResultDisplayComponent } from './components/result-display/result-display.component';
+import { ProPlayerListComponent } from './components/pro-player-list/pro-player-list.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +26,12 @@ import { ResultDisplayComponent } from './components/result-display/result-displ
     CompareTableComponent,
     FinalScoreTableComponent,
     HeaderComponent,
-    ResultDisplayComponent
+    ResultDisplayComponent,
+    ProPlayerListComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
