@@ -2,9 +2,8 @@ var _ = require('lodash');
 
 getFilteredData = (data, summName) => {
     console.log('filtering data...');
-    console.log('---------------- full data: ---------------- ', data);
-
     var matchesFound = data.length;
+    console.log("matchesFound:--------",matchesFound);
     var idsPerMatch = [];
     data.forEach(function(match) {
         let participantInfo = _.find(match.participantIdentities, (info) => info.player.summonerName === summName);   

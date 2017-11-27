@@ -5,37 +5,37 @@
         <h6 class="table-column-subtitle">Matches analized: {{ userMatches.agregatedInfo.matchesFound }}</h6>
         <table class="table">
             <tr>
-            <td>Kills:</td><td>{{ userMatches.agregatedInfo.kills }}</td>
+            <td>Kills:</td><td class="number-cell">{{ userMatches.agregatedInfo.kills / userMatches.agregatedInfo.matchesFound }}</td>
             </tr>
             <tr>
-                <td>Deaths:</td><td>{{ userMatches.agregatedInfo.deaths }}</td>
+                <td>Deaths:</td><td class="number-cell">{{ userMatches.agregatedInfo.deaths / userMatches.agregatedInfo.matchesFound }}</td>
             </tr>
             <tr>
-                <td>Assists:</td><td>{{ userMatches.agregatedInfo.assists }}</td>
+                <td>Assists:</td><td class="number-cell">{{ userMatches.agregatedInfo.assists / userMatches.agregatedInfo.matchesFound }}</td>
             </tr>
             <tr>
-                <td>Double kills:</td><td>{{ userMatches.agregatedInfo.doubleKills }}</td>
+                <td>Double kills:</td><td class="number-cell">{{ userMatches.agregatedInfo.doubleKills / userMatches.agregatedInfo.matchesFound }}</td>
             </tr>
             <tr>
-                <td>Triple kills:</td><td>{{ userMatches.agregatedInfo.tripleKills }}</td>
+                <td>Triple kills:</td><td class="number-cell">{{ userMatches.agregatedInfo.tripleKills / userMatches.agregatedInfo.matchesFound }}</td>
             </tr>
             <tr>
-                <td>Quadra kills:</td><td>{{ userMatches.agregatedInfo.quadraKills }}</td>
+                <td>Quadra kills:</td><td class="number-cell">{{ userMatches.agregatedInfo.quadraKills / userMatches.agregatedInfo.matchesFound }}</td>
             </tr>
             <tr>
-                <td>Penta kills:</td><td>{{ userMatches.agregatedInfo.pentaKills }}</td>
+                <td>Penta kills:</td><td class="number-cell">{{ userMatches.agregatedInfo.pentaKills / userMatches.agregatedInfo.matchesFound }}</td>
             </tr>
             <tr>
-                <td>Gold earned:</td><td>{{ userMatches.agregatedInfo.goldEarned }}</td>
+                <td>Gold earned:</td><td class="number-cell">{{ userMatches.agregatedInfo.goldEarned / userMatches.agregatedInfo.matchesFound }}</td>
             </tr>
             <tr>
-                <td>Total damage dealt:</td><td>{{ userMatches.agregatedInfo.totalDamageDealtToChampions }}</td>
+                <td>Total damage dealt:</td><td class="number-cell">{{ userMatches.agregatedInfo.totalDamageDealtToChampions / userMatches.agregatedInfo.matchesFound }}</td>
             </tr>
             <tr>
-                <td>Total minions killed:</td><td>{{ userMatches.agregatedInfo.totalMinionsKilled }}</td>
+                <td>Total minions killed:</td><td class="number-cell">{{ userMatches.agregatedInfo.totalMinionsKilled / userMatches.agregatedInfo.matchesFound}}</td>
             </tr>
             <tr>
-                <td>Neutral minions killed:</td><td>{{ userMatches.agregatedInfo.neutralMinionsKilled }}</td>
+                <td>Neutral minions killed:</td><td class="number-cell">{{ userMatches.agregatedInfo.neutralMinionsKilled / userMatches.agregatedInfo.matchesFound}}</td>
             </tr>
         </table>
     </div>

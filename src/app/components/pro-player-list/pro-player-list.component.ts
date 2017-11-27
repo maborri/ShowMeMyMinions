@@ -9,30 +9,36 @@ import { GetUserIdService } from '../../services/get-user-id.service';
 export class ProPlayerListComponent implements OnInit {
 
   constructor(private getUserIdService: GetUserIdService) { }
-  @Output() gotProPlayer;
-  inf;
+
+  @Output() gotProPlayer: EventEmitter<any> = new EventEmitter<any>();
   gotValidInfo = false;
+  inf;
   proPlayers = [
     { sum: 'hide on bush', reg: 'kr', label: 'Faker (MID)'},
-    { sum: '삼성갤럭시CoreJJ', reg: 'kr', label: 'CoreJJ (Support)'}
+    { sum: 'aphromoo', reg: 'na1', label: 'Aphromoo (Support)'},
+    { sum: 'Polish Wonderb0y', reg: 'eun1', label: 'Jankos (Jungle)'},
+    { sum: 'Anivia Kid', reg: 'eun1', label: 'Froggen (MID)'},
+    { sum: 'FZ3R0', reg: 'na1', label: 'Wildturtle (ADC)'},
+    { sum: 'Sorry', reg: 'kr', label: 'Ssumday (TOP)'},
+    { sum: 'TSM ZV3N', reg: 'eun1', label: 'Zven (ADC)'},
   ];
   ngOnInit() {
   }
 
-  findProPlayerMatches(sum, reg) {
-    // this.getUserIdService.getUserId(sum, reg)
-    //   .subscribe(
-    //     res => {
-    //       this.inf = res;
-    //       this.inf.profileIconId = `http://ddragon.leagueoflegends.com/cdn/7.20.2/img/profileicon/${this.inf.profileIconId}.png`
-    //       this.inf.region = reg;
-    //       this.gotValidInfo = true;
-    //       console.log(this.inf);
-    //       this.gotProPlayer.emit(this.inf);
-    //     },
-    //     err => {
-    //       console.error('Observer got an error: ' + JSON.stringify(err.message));
-    //     }
-    //   );
+  findProPlayerMatches(reg, sum) {
+    this.getUserIdService.getUserId(reg, sum )
+      .subscribe(
+        (res: any) => {
+          this.inf = res.info;
+          this.inf.profileIconId = `http://ddragon.leagueoflegends.com/cdn/${res.severVer}/img/profileicon/${this.inf.profileIconId}.png`
+          this.inf.region = reg;
+          this.gotValidInfo = true;
+          console.log(this.inf);
+          this.gotProPlayer.emit(this.inf);
+        },
+        err => {
+          console.error('Observer got an error: ' + JSON.stringify(err.message));
+        }
+      );
   }
 }

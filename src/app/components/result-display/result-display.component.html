@@ -1,5 +1,9 @@
-<div class="result-display-container">
-  <div class="final-score">Your score:  <span class="final-score-points">{{ results.finalScore | number : '1.2-2' }} points.</span></div>
-  <div class="final-score-winner">WINNER:  <span class="final-score-name">{{ results.winner }}!</span></div>
-  <button class="primary-button final-score-button" (click)="findAnotherRival()">Find another rival</button>
+<div class="result-display-container" *ngIf="results" [@fade]>
+  <div class="final-score-winner">WINNER:  <span [ngClass]="results.won ? 'win' : 'lose'" class="final-score-name">{{ results.winner }}!</span></div>
+  <div class="final-score">Winner's score:  <span class="final-score-points">{{ results.finalScore | number : '1.2-2' }} points.</span></div>
+  
+  <div>
+    <h5 class="final-score-tryagain">{{results.won ? 'You won! try again?' : 'You lose... try again?'}}</h5>
+    <button class="primary-button final-score-button" (click)="findAnotherRival()">Find another rival</button>
+  </div>
 </div>

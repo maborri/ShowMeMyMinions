@@ -2,25 +2,32 @@
 @import '../../css/colors';
 
 .table td {
-    border-top: 1px solid $cyan;
+    border-top: 1px solid #000;
 }
 
 .results-table-column {
-    background-color: lighten($background-color, 5);
-    box-shadow: 1px 1px 2px 2px green;
+    background-color: #2c3e50;
+    box-shadow: 1px 1px 2px 2px black;
+    color: #ecf0f1;
 
     &-header {
+        color: #00ACC1;
         text-align: center;
         padding-top: 10px;
     }
     &-subtitle {
         text-align: center;
+        margin-bottom: 10px;
+    }
+
+    td {
+        padding: 5px;
     }
 }
 
 
 .Win {
-    color: blue;
+    color: #00BCD4;
 }
 
 .Lose {

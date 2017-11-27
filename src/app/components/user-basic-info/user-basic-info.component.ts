@@ -8,6 +8,7 @@ import { GetMatchHistoryService } from '../../services/get-match-history.service
 })
 export class UserBasicInfoComponent implements OnInit {
   @Input() userInfo: any;
+  @Input() firstBasicInfo;
   @Output() matchesFound: EventEmitter<any> = new EventEmitter<any>();
   getUserError: string;
 

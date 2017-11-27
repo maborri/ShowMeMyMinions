@@ -1,7 +1,7 @@
-<div>
-  <h5>Compare with a pro player!</h5>
+<div class="pro-player-container">
+  <h5>Or compare with a pro player:</h5>
   <ul>
-    <li *ngFor="let pro of proPlayers">{{pro.label}}</li>
+    <li *ngFor="let pro of proPlayers" (click)="findProPlayerMatches(pro.reg, pro.sum)" class="pro-list-item">{{pro.label}}</li>
   </ul>
 
 

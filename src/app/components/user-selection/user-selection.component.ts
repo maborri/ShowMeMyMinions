@@ -9,12 +9,13 @@ import { GetUserIdService } from '../../services/get-user-id.service';
 })
 export class UserSelectionComponent implements OnInit {
   @Output() userUpdated: EventEmitter<any> = new EventEmitter<any>();
+  @Input() firstPicker;
   summInfo = {
     summonerName: '',
     region: ''
   }
   getUserError: string;
-  info: any;
+  inf: any;
   gotValidInfo = false;
 
   constructor(private getUserIdService: GetUserIdService) { }
@@ -25,17 +26,22 @@ export class UserSelectionComponent implements OnInit {
   getMatchList(): void {
     this.getUserIdService.getUserId(this.summInfo.region, this.summInfo.summonerName)
       .subscribe(
-        res => {
-          this.info = res;
-          this.info.profileIconId = `http://ddragon.leagueoflegends.com/cdn/7.20.2/img/profileicon/${this.info.profileIconId}.png`
-          this.info.region = this.summInfo.region;
-          this.gotValidInfo = true;
-          console.log(this.info);
-          this.userUpdated.emit(this.info);
+        (res:any) => {
+          if(res.info) {
+            this.inf = res.info;
+            this.inf.profileIconId = `http://ddragon.leagueoflegends.com/cdn/${res.severVer}/img/profileicon/${this.inf.profileIconId}.png`
+            this.inf.region = this.summInfo.region;
+            this.gotValidInfo = true;
+            console.log(this.inf); 
+            this.userUpdated.emit(this.inf);
+            this.getUserError = "";
+          }
+          else
+            this.getUserError = "Can't find any match for the given information";
         },
         err => {
           console.error('Observer got an error: ' + JSON.stringify(err.message));
-          this.getUserError = JSON.stringify(err.message);
+          this.getUserError = "Can't find any match for the given information";
         }
       );
     }

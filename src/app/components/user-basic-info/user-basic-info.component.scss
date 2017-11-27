@@ -5,7 +5,7 @@
 }
 
 .basic-info-profile-icon {  
-    border: 2px solid black;
+    border: 2px solid #ecf0f1;
     margin-left: 5px;
     margin-top: -30px;
     height: 100px;
@@ -15,9 +15,14 @@
 
 .basic-info-profile-data {    
     display: inline-block;
+    color: #ecf0f1;
 
-    h4, h6 {
+    h5, h6 {
         font-weight: 600;
+    }
+
+    h5 {
+        color: #00ACC1;
     }
 
 }

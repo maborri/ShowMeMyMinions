@@ -1,7 +1,26 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {trigger, transition, style, animate, state} from '@angular/animations';
 
 @Component({
   selector: 'smmm-final-score-table',
+  animations: [
+    trigger(
+      'fade',
+      [
+        transition(
+        ':enter', [
+          style({ opacity: 0}),
+          animate('500ms', style({'opacity': 1}))
+        ]
+      ),
+      transition(
+        ':leave', [
+          style({ 'opacity': 1}),
+          animate('500ms', style({ 'opacity': 0})),         
+        ]
+      )]
+    )
+  ],
   templateUrl: './final-score-table.component.html',
   styleUrls: ['./final-score-table.component.scss']
 })
@@ -51,7 +70,9 @@ export class FinalScoreTableComponent implements OnInit {
 
   showResults() {
     let winner = this.finalScore > 0 ? this.userMatches.agregatedInfo.summName : this.secondUserMatches.agregatedInfo.summName;
-    this.sendFinalScore.emit({ finalScore: this.finalScore, winner: winner });
+    let won = this.finalScore > 0;
+    this.finalScore = Math.abs(this.finalScore);
+    this.sendFinalScore.emit({ finalScore: this.finalScore, winner: winner, won: won });
     this.showPoints = true;
   }
 

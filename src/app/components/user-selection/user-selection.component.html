@@ -1,10 +1,10 @@
 <div class="summoner-input-container">
   <div class="line-container">
-    <label for="summonerInput">Put your summoner name here:</label>
+    <label for="summonerInput">{{firstPicker ? 'Put your summoner name here:' : 'Pick your rival:'}}</label>
     <input id="summonerInput" type="text" [(ngModel)]="summInfo.summonerName">
   </div>
   <div class="line-container">
-    <label for="serverSelect">Pick your server:</label>
+    <label for="serverSelect">Server:</label>
     <select id="serverSelect" [(ngModel)]="summInfo.region">
       <option value="br1">BR</option>
       <option value="eun1">EUNE</option>
@@ -19,6 +19,6 @@
       <option value="tr1">TR</option>
     </select>
   </div>
-  <button class="primary-button" (click)="getMatchList()">Find me...</button>
-  <p>{{getUserError}}</p>
+  <button class="primary-button" (click)="getMatchList()">{{firstPicker ? 'Find me!' : 'Find it!'}}</button>
+  <p class="error">{{getUserError}}</p>
 </div>

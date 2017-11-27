@@ -12,14 +12,25 @@ app.use(cors());
 app.on('unhandledRejection', (reason) => {
   console.log('Reason: ' + reason);
 });
+
+// const severVer = rp(severOptions)
+//   .then((res)=> serverVer = res[0])
+//   .catch(function(e){console.log(e)});;   
+const severVer = config.ddVersion;
+
 /*
  * API: get user ID:
  */
 app.get('/getUserId/:region/:summoner', async function (req, res, next) {
   var region = req.params.region;
   var summoner = req.params.summoner;
+  var summInfo = {
+    severVer,
+    info: {}
+  };
+  summInfo.severVer = severVer;
   try{
-    var summInfo = await getId(region, summoner);
+    summInfo.info = await getId(region, summoner);
     res.send(summInfo);
   }
   catch(err){
@@ -66,15 +77,14 @@ app.get('/getLastMatches/:region/:id/:summName', async function (req, res) {
           }
           else {
             promises.push(getMatchDetails(region, matchesShort[currentIndex].gameId));    
-            currentIndex++;
-
-            matchesLong = await Promise.all(promises);
-            var filteredData = matchDataFilters.getFilteredData(matchesLong, summName);
-            res.end(JSON.stringify(filteredData));
-            endTime = Date.now() - startTime;
-            console.log("endTime: ",endTime/1000);           
+            currentIndex++;           
           }
         }
+        matchesLong = await Promise.all(promises);
+        var filteredData = matchDataFilters.getFilteredData(matchesLong, summName);
+        res.end(JSON.stringify(filteredData));
+        endTime = Date.now() - startTime;
+        console.log("endTime: ",endTime/1000);           
     }
 
     try{
@@ -114,7 +124,7 @@ async function getMatchDetails(region, matchId) {
 
 async function getMatchListShort(id, region) { 
   //var url = `https://${region}.api.riotgames.com/lol/match/v3/matchlists/by-account/${id}`;
-  var url = `https://${region}.api.riotgames.com/lol/match/v3/matchlists/by-account/${id}?beginIndex=0&endIndex=2`;
+  var url = `https://${region}.api.riotgames.com/lol/match/v3/matchlists/by-account/${id}?endIndex=10`;
   var options = {
     url: url,
     headers: {
@@ -130,6 +140,19 @@ async function getMatchListShort(id, region) {
     console.log('Error getting match list short:', err.message);
   }  
 }
+
+const serverVersions = 'https://la2.api.riotgames.com/lol/static-data/v3/versions'
+const serverVer = '';
+
+const severOptions = {
+  url: serverVersions,
+  headers: {
+    "X-Riot-Token": config.apiKey
+  },
+  json: true
+};
+
+
 
 app.listen(8081, function () {
    console.log("app listening at 8081");
